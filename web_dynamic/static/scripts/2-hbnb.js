@@ -1,14 +1,20 @@
+/*---------------MainProgram---------------------------*/
+
 $(document).ready(function () {
   const amenityObject = {};
 
   $('.amenities .popover input[type="checkbox"]').on('change', function () {
-    handleCheckboxChange($(this), amenityObject);
+    handleCheckboxChange($(this));
   });
 
   apiStatus();
 });
 
-function handleCheckboxChange($checkbox, amenityObject) {
+
+/*---------------FunctionDefinition---------------------*/
+
+function handleCheckboxChange ($checkbo) {
+
   // Retrieve data from checkbox
   const amenityName = $checkbox.data('name');
   const amenityId = $checkbox.data('id');
@@ -24,9 +30,9 @@ function handleCheckboxChange($checkbox, amenityObject) {
   $('.amenities h4').text(names.sort().join(', '));
 }
 
-function apiStatus() {
-  const url = 'http://0.0.0.0:5001/api/v1/status/';
 
+function apiStatus () {
+  const url = 'http://localhost:5001/api/v1/status/';
   $.get(url, response => {
     if (response.status === 'OK') {
       $('DIV#api_status').addClass('available');
